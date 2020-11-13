@@ -1,17 +1,17 @@
-const url = 'https://api.github.com/users/';
- const login = 'karolinahoover';
- let currentDate = new Date();
+window.setTimeout(function () {
+  document.body.classList.add('loaded');
+  let body = document.body;
+  let string = window.location.search;
+  let url = 'https://api.github.com/users/karolinahoover';
+  const date = new Date();
+  const getDate = new Promise((resolve, reject) => {
+    setTimeout(() => date ? resolve(date) : reject("Ошибка"), 100)
+  })
+  const getUrl = new Promise((resolve, reject) => {
+    setTimeout(() => url ? resolve(url) : reject("Ошибка URL!"), 100)
+  })
 
- setTimeout(() => {
-   const preloader = document.getElementById('floatingCirclesG');
-   preloader.classList.add('stop');
- }, 3000);
-
- const getDate = new Promise((resolve, reject) => {
-   setTimeout(() => currentDate ? resolve(currentDate) : reject('имя не найдено'), 3000);
- });
-
- Promise.all([getUrl, getDate])
+   Promise.all([getUrl, getDate])
       .then(([url, date]) => fetch(url))
       .then(res => res.json())
       .then(json => {
